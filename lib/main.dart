@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/LogIn.dart';
-import 'package:flutter_app/pages/MyDrawer.dart';
-import 'package:flutter_app/pages/home.dart';
+import 'package:flu/pages/LogIn.dart';
+import 'package:flu/pages/MyDrawer.dart';
+import 'package:flu/pages/home.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

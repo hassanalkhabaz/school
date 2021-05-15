@@ -1,4 +1,4 @@
-name: flutter_app
+name: flu
 description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
+  carousel_pro: ^1.0.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -38,7 +39,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
   uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
   assets:
     - images/
   #   - images/a_dot_ham.jpeg

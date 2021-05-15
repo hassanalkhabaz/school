@@ -2,37 +2,41 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  const InputField({
+    Key key,
+    this.lableText ,
+    this.child,
+    this.icon,
+    this.hintText,
+    this.IanputBorder,
+    this.IsPassword
+
+  }) : super(key: key);
+
+  final  Icon icon;
+  final String lableText;
+  final Widget child;
+  final String hintText;
+  final InputBorder IanputBorder;
+  final bool IsPassword;
+  Widget build(BuildContext context,) {
+
     return Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: Colors.grey[200]),
-            ),
-          ),
+
           child: TextField(
-            decoration: InputDecoration(
-                hintText: "Enter your email",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none),
+            obscureText: IsPassword,
+            obscuringCharacter: "*",
+            decoration: InputDecoration(icon: icon,
+                border: IanputBorder,
+                labelText: lableText,
+                hintText: hintText,
+              
+
+            ),
           ),
         ),
-        Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: Colors.grey[200]),
-            ),
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-                hintText: "Enter your password",
-                hintStyle: TextStyle(color: Colors.grey),
-                border: InputBorder.none),
-          ),
-        )
       ],
     );
   }

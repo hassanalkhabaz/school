@@ -17,7 +17,26 @@ class InputWrapper extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: InputField(),
+            child: Column(
+              children: [
+                Container(
+                  child: InputField(IsPassword: false,
+                    icon: Icon(
+                      Icons.person,
+                  color: Colors.cyan,  ),
+                    lableText: "User Name",
+                  ),
+                ),
+                SizedBox(height: 15,),
+                InputField(IsPassword: true,
+                  icon: Icon(
+                    Icons.vpn_key,
+                    color: Colors.cyan,
+                  ),
+                  lableText: "password",
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 40,
@@ -26,11 +45,11 @@ class InputWrapper extends StatelessWidget {
             'forget password ?',
             style: TextStyle(color: Colors.grey),
           ),
-          SizedBox(height: 40,)
-          ,
+          SizedBox(
+            height: 40,
+          ),
           Button(),
         ],
-
       ),
     );
   }

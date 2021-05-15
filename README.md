@@ -1,4 +1,4 @@
-# flutter_app
+# flu
 
 A new Flutter application.
 

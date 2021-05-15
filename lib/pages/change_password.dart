@@ -1,5 +1,6 @@
+import 'package:flu/pages/InputField.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/MyDrawer.dart';
+import 'package:flu/pages/MyDrawer.dart';
 
 class change_password extends StatelessWidget {
   @override
@@ -11,55 +12,56 @@ class change_password extends StatelessWidget {
           title: Text('change your password'),
         ),
         drawer: MyDrawer(),
-        body: Column(
-          children: [
-            Container(
-              child: TextField(
-                decoration: InputDecoration(
-                    hintText: "Enter Your TD",
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                child: InputField(IsPassword: false,
+                    lableText: "Enter your user name",
+                    hintText: "user name ",
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    ),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                margin: EdgeInsets.symmetric(vertical: 70),
+                decoration: BoxDecoration(
+                  color: Colors.cyan[500],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+              ),
+              Container(
+                  child: InputField(IsPassword: true,
                     icon: Icon(
                       Icons.vpn_key,
-                      color: Colors.cyan,
+                      color: Colors.white,
                     ),
-                    border: InputBorder.none),
+                    hintText: "Enter your Old password",
+                    lableText: "Old password",
+
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.cyan[500],
+                    borderRadius: BorderRadius.circular(20),
+                  )),
+              SizedBox(
+                height: 60,
               ),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              margin: EdgeInsets.symmetric(vertical: 70),
-              decoration: BoxDecoration(
-                color: Colors.pink,
-                borderRadius: BorderRadius.circular(29),
-              ),
-            ),
-            Container(
-                child: TextField(
-                  decoration: InputDecoration(
-                      hintText: "Enter your User Name",
-                      icon: Icon(
-                        Icons.person,
-                        color: Colors.cyan,
-                      ),
-                      border: InputBorder.none),
+              Container(
+                child: FlatButton(
+                  child: Text('send'),
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pushNamed('change_password_after_valudation');
+                  },
+                  color: Colors.cyan,
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                margin: EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.pink,
-                  borderRadius: BorderRadius.circular(29),
-                )),
-            SizedBox(
-              height: 60,
-            ),
-            Container(
-              child: FlatButton(
-                child: Text('send'),
-                onPressed: () {
-                  Navigator.of(context)
-                      .pushNamed('change_password_after_valudation');
-                },
-                color: Colors.cyan,
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

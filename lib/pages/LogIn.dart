@@ -2,8 +2,8 @@ import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/MyDrawer.dart';
-import 'package:flutter_app/pages/home.dart';
+import 'package:flu/pages/MyDrawer.dart';
+import 'package:flu/pages/home.dart';
 
 import 'Header.dart';
 import 'InputWrapper.dart';
@@ -23,17 +23,22 @@ class LogIn extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               height: 80,
-            ),Header(),
-            Expanded(child: Container(
-              decoration: BoxDecoration(color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(60),
-                  topRight: Radius.circular(60),
-                )
-                ,),child: InputWrapper()
-
-              ,)
-              ,)
+            ),
+            Header(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(60),
+                      topRight: Radius.circular(60),
+                    ),
+                  ),
+                  child: InputWrapper(),
+                ),
+              ),
+            )
           ],
         ),
       ),

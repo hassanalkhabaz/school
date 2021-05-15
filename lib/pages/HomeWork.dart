@@ -1,50 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/MyDrawer.dart';
+import 'package:flu/pages/MyDrawer.dart';
 
-class HomeWork extends StatelessWidget {
+class HomeWork extends StatefulWidget {
+  @override
+  _HomeWorkState createState() => _HomeWorkState();
+}
+
+class _HomeWorkState extends State<HomeWork> {
+  String _chosenValue;
+
   @override
   Widget build(BuildContext context) {
-    var _chosenValue;
-    return Scaffold(
+    return Scaffold(drawer: MyDrawer(),
       appBar: AppBar(
-        title: Text('Home Work'),
+        title: Text('home works'),
       ),
-      drawer: MyDrawer(),
-      body: Column(
-        children: [
-          DropdownButton<String>(
-            focusColor: Colors.white,
+      body: Center(
+        child: Container(
+          padding: const EdgeInsets.all(0.0),
+          child: DropdownButton<String>(
             value: _chosenValue,
-            style: TextStyle(color: Colors.white),
-            iconEnabledColor: Colors.black,
+            //elevation: 5,
+            style: TextStyle(color: Colors.black),
+
             items: <String>[
               'math',
               'arabic',
-              'english',
+              'English',
+              'sienc',
+
             ].map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
-                child: Text(
-                  value,
-                  style: TextStyle(color: Colors.black),
-                ),
+                child: Text(value),
               );
             }).toList(),
             hint: Text(
-              'Please choose a name of subject',
+              "Please choose a subject",
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
             ),
             onChanged: (String value) {
-              {
+              setState(() {
                 _chosenValue = value;
-                print(_chosenValue);
-              }
+              });
             },
           ),
-        ],
+        ),
       ),
     );
   }

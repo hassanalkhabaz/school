@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/LogIn.dart';
+import 'package:flu/pages/LogIn.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -23,7 +23,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text('Home'),
             leading: Icon(Icons.home),
-            onTap: () {},
+            onTap: () {Navigator.of(context).pushNamed('home');},
           ),
           ListTile(
             title: Text('Home Works'),
@@ -33,7 +33,7 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text('Marks'),
             leading: (Icon(Icons.bookmarks)),
-            onTap: () {},
+            onTap: () {Navigator.of(context).pushNamed('marks');},
           ),
           ListTile(
             title: Text('Notifications'),

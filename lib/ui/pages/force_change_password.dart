@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
 
-class change_password_after_valudation extends StatelessWidget {
+class ForceChangePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

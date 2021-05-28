@@ -2,7 +2,7 @@ import 'package:flu/ui/widgets/InputField.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
 
-class change_password extends StatelessWidget {
+class ForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

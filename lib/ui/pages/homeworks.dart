@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
 
-class HomeWork extends StatefulWidget {
+class Homeworks extends StatefulWidget {
   @override
-  _HomeWorkState createState() => _HomeWorkState();
+  _HomeworksState createState() => _HomeworksState();
 }
 
-class _HomeWorkState extends State<HomeWork> {
+class _HomeworksState extends State<Homeworks> {
   String _chosenValue;
 
   @override

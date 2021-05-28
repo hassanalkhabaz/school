@@ -25,7 +25,6 @@ class LogIn extends StatelessWidget {
               SizedBox(
                 height: verticalSpacing * 2,
               ),
-
               /// Header
               buildHeader(),
               Container(
@@ -36,7 +35,6 @@ class LogIn extends StatelessWidget {
                     topRight: Radius.circular(60),
                   ),
                 ),
-
                 ///
                 child: Padding(
                   padding: EdgeInsets.symmetric(

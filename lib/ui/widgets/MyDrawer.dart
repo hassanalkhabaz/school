@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flu/pages/LogIn.dart';
+import 'package:flu/ui/pages/LogIn.dart';
 
 class MyDrawer extends StatelessWidget {
   @override

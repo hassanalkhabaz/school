@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flu/pages/MyDrawer.dart';
+import 'package:flu/ui/widgets/MyDrawer.dart';
 
-class Marks extends StatefulWidget {
+class HomeWork extends StatefulWidget {
   @override
-  _MarksState createState() => _MarksState();
+  _HomeWorkState createState() => _HomeWorkState();
 }
 
-class _MarksState extends State<Marks> {
+class _HomeWorkState extends State<HomeWork> {
   String _chosenValue;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(drawer: MyDrawer(),
       appBar: AppBar(
-        title: Text('marks'),
+        title: Text('home works'),
       ),
       body: Center(
         child: Container(

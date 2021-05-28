@@ -2,10 +2,10 @@ import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flu/pages/MyDrawer.dart';
-import 'package:flu/pages/home.dart';
+import 'package:flu/ui/widgets/MyDrawer.dart';
+import 'package:flu/ui/pages/home.dart';
 
-import 'Header.dart';
+import 'package:flu/ui/widgets/Header.dart';
 import 'InputWrapper.dart';
 
 class LogIn extends StatelessWidget {

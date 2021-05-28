@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'InputField.dart';
-import 'button.dart';
+import 'package:flu/ui/widgets/button.dart';
 
 class InputWrapper extends StatelessWidget {
   @override

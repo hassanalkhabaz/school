@@ -1,7 +1,7 @@
-import 'package:flu/pages/InputField.dart';
+import 'package:flu/ui/pages/InputField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flu/pages/MyDrawer.dart';
+import 'package:flu/ui/widgets/MyDrawer.dart';
 
 class change_password_after_valudation extends StatelessWidget {
   @override

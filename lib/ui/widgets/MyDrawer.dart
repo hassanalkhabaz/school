@@ -3,7 +3,6 @@ import 'package:flu/ui/pages/LogIn.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
     // TODO: implement build
 
@@ -14,50 +13,75 @@ class MyDrawer extends StatelessWidget {
             accountName: Text('hassan'),
             accountEmail: (Text('hassan@gmail.com ')),
             currentAccountPicture: (CircleAvatar(
+              backgroundColor: Colors.cyan[600],
               child: Icon(Icons.person),
             )),
             decoration: BoxDecoration(
-              color: Colors.blueAccent,
+              color: Colors.cyan[400],
             ),
           ),
-          ListTile(
-            title: Text('Home'),
-            leading: Icon(Icons.home),
-            onTap: () {Navigator.of(context).pushNamed('home');},
+          ///
+          ///
+          buildListTile(
+              icon: Icon(Icons.home),
+              title: 'Home',
+              onTap: () {
+                Navigator.of(context).pushNamed('/home');
+              }),
+          buildListTile(
+              icon: Icon(Icons.school),
+              title: 'Homeworks',
+              onTap: () {
+                Navigator.of(context).pushNamed('/homeworks');
+              }),
+          
+          buildListTile(
+            title: 'Marks',
+            icon: Icon(Icons.bookmarks),
+            onTap: () {
+              Navigator.of(context).pushNamed('/marks');
+            },
           ),
-          ListTile(
-            title: Text('Home Works'),
-            leading: Icon(IconData(0xe9a8, fontFamily: 'MaterialIcons')),
-            onTap: () {Navigator.of(context).pushNamed('HomeWork');},
+          buildListTile(
+            title: 'Notifications',
+            icon: Icon(Icons.notification_important),
+            onTap: () {
+              Navigator.of(context).pushNamed('/notifications');
+            },
           ),
-          ListTile(
-            title: Text('Marks'),
-            leading: (Icon(Icons.bookmarks)),
-            onTap: () {Navigator.of(context).pushNamed('marks');},
-          ),
-          ListTile(
-            title: Text('Notifications'),
-            leading: Icon(Icons.notification_important),
-            onTap: () {},
-          ),
-          ListTile(
-            title: Text('Programs'),
-            leading: Icon(Icons.photo_rounded),
-            onTap: () {},
+          buildListTile(
+            title: 'Programs',
+            icon: Icon(Icons.photo_rounded),
+            onTap: () {
+              Navigator.of(context).pushNamed('/programs');
+            },
           ),
           Divider(height: 25, thickness: 2),
-          ListTile(
-            title: Text('profile'),
-            leading: Icon(Icons.person),
-            onTap: () {Navigator.of(context).pushNamed('change_password');},
+          buildListTile(
+            title: 'profile',
+            icon: Icon(Icons.person),
+            onTap: () {},
           ),
-          ListTile(
-            title: Text('logout'),
-            leading: Icon(Icons.logout),
-            onTap: () {Navigator.of(context).pushNamed('logout');},
+          buildListTile(
+            title: 'logout',
+            icon: Icon(Icons.logout),
+            onTap: () {
+              Navigator.of(context).pushNamed('/login');
+            },
           )
         ],
       ),
+    );
+  }
+
+  ListTile buildListTile({title, icon, onTap}) {
+    return ListTile(
+      title: Text(
+        title,
+        style: TextStyle(color: Colors.grey[800]),
+      ),
+      leading: icon,
+      onTap: onTap,
     );
   }
 }

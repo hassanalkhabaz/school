@@ -1,4 +1,4 @@
-import 'package:flu/ui/pages/InputField.dart';
+import 'package:flu/ui/widgets/InputField.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
 
@@ -16,7 +16,7 @@ class change_password extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                child: InputField(IsPassword: false,
+                child: InputField(isPassword: false,
                     lableText: "Enter your user name",
                     hintText: "user name ",
                     icon: Icon(
@@ -32,7 +32,7 @@ class change_password extends StatelessWidget {
                 ),
               ),
               Container(
-                  child: InputField(IsPassword: true,
+                  child: InputField(isPassword: true,
                     icon: Icon(
                       Icons.vpn_key,
                       color: Colors.white,

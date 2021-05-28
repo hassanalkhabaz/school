@@ -8,8 +8,7 @@ class InputField extends StatelessWidget {
     this.child,
     this.icon,
     this.hintText,
-    this.IanputBorder,
-    this.IsPassword
+    this.isPassword= false
 
   }) : super(key: key);
 
@@ -17,8 +16,7 @@ class InputField extends StatelessWidget {
   final String lableText;
   final Widget child;
   final String hintText;
-  final InputBorder IanputBorder;
-  final bool IsPassword;
+  final bool isPassword;
   Widget build(BuildContext context,) {
 
     return Column(
@@ -26,13 +24,11 @@ class InputField extends StatelessWidget {
         Container(
 
           child: TextField(
-            obscureText: IsPassword,
+            obscureText: isPassword,
             obscuringCharacter: "*",
             decoration: InputDecoration(icon: icon,
-                border: IanputBorder,
                 labelText: lableText,
                 hintText: hintText,
-              
 
             ),
           ),

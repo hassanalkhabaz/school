@@ -1,4 +1,4 @@
-import 'package:flu/ui/pages/InputField.dart';
+import 'package:flu/ui/widgets/InputField.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
@@ -16,7 +16,7 @@ class change_password_after_valudation extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              child: InputField(lableText:  "new password",icon: Icon(Icons.vpn_key),IsPassword: true,),
+              child: InputField(lableText:  "new password",icon: Icon(Icons.vpn_key),isPassword: true,),
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
               margin: EdgeInsets.symmetric(vertical: 70),
               decoration: BoxDecoration(
@@ -25,7 +25,7 @@ class change_password_after_valudation extends StatelessWidget {
               ),
             ),
             Container(
-                child: InputField(lableText:  "confirm your password",icon: Icon(Icons.vpn_key),IsPassword: true,),
+                child: InputField(lableText:  "confirm your password",icon: Icon(Icons.vpn_key),isPassword: true,),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 margin: EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(

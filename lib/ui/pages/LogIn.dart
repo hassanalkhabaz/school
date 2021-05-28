@@ -106,7 +106,9 @@ class LogIn extends StatelessWidget {
           height: verticalSpacing * .5,
         ),
         FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushReplacementNamed('/home');
+          },
           height: 50,
           padding: EdgeInsets.symmetric(horizontal: 50),
           shape:
@@ -140,12 +142,11 @@ class LogIn extends StatelessWidget {
       obscureText: isPassword,
       obscuringCharacter: '*',
       decoration: InputDecoration(
-        focusColor: Colors.cyan[400],
-        icon: icon,
-        labelText: label,
-        hintText: hint,
-        hintStyle: TextStyle(color: Colors.grey[400])
-      ),
+          focusColor: Colors.cyan[400],
+          icon: icon,
+          labelText: label,
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.grey[400])),
     );
   }
 

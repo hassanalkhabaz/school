@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/notifications': (context) => Notifications(),
         '/programs': (context) => Programs(),
         '/homeworks': (context) => Homeworks(),
+        '/attendance': (context) => Homeworks(),
       },
       home: LogIn(),
     );

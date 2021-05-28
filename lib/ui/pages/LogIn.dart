@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-import 'package:flu/ui/widgets/InputField.dart';
 import 'package:flutter/material.dart';
-import 'package:flu/ui/widgets/MyDrawer.dart';
-import 'package:flu/ui/pages/home.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class LogIn extends StatelessWidget {
   ///default = 40
@@ -25,6 +23,7 @@ class LogIn extends StatelessWidget {
               SizedBox(
                 height: verticalSpacing * 2,
               ),
+
               /// Header
               buildHeader(),
               Container(
@@ -35,12 +34,13 @@ class LogIn extends StatelessWidget {
                     topRight: Radius.circular(60),
                   ),
                 ),
+
                 ///
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                       vertical: verticalSpacing * 2,
                       horizontal: verticalSpacing),
-                  child: buildLoginForm(),
+                  child: buildLoginForm(context),
                 ),
               )
             ],
@@ -50,33 +50,42 @@ class LogIn extends StatelessWidget {
     );
   }
 
-  Column buildLoginForm() {
+  Column buildLoginForm(BuildContext context) {
+    final _formKey = GlobalKey<FormBuilderState>();
+
     return Column(
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            children: [
-              InputField(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.cyan,
+          child: FormBuilder(
+            key: _formKey,
+            child: Column(
+              children: [
+                textField(context,
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.cyan,
+                    ),
+                    name: 'username',
+                    label: 'Username',
+                    hint: 'enter your username',
+                    onChanged: (val) {}),
+                SizedBox(
+                  height: verticalSpacing * .5,
                 ),
-                lableText: "User Name",
-              ),
-              SizedBox(
-                height: verticalSpacing * .5,
-              ),
-              InputField(
-                isPassword: true,
-                icon: Icon(
-                  Icons.vpn_key,
-                  color: Colors.cyan,
-                ),
-                lableText: "password",
-              )
-            ],
+                textField(context,
+                    icon: Icon(
+                      Icons.person,
+                      color: Colors.cyan,
+                    ),
+                    name: 'password',
+                    label: 'Password',
+                    hint: 'enter your password here',
+                    isPassword: true,
+                    onChanged: (val) {}),
+              ],
+            ),
           ),
         ),
         SizedBox(
@@ -97,10 +106,11 @@ class LogIn extends StatelessWidget {
           height: verticalSpacing * .5,
         ),
         FlatButton(
-          onPressed: (){},
+          onPressed: () {},
           height: 50,
           padding: EdgeInsets.symmetric(horizontal: 50),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           color: Colors.cyan[400],
           child: Text(
             'Login',
@@ -109,6 +119,33 @@ class LogIn extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  FormBuilderTextField textField(BuildContext context,
+      {@required String name,
+      @required String label,
+      @required String hint,
+      Icon icon,
+      bool isPassword = false,
+      @required Function onChanged}) {
+    return FormBuilderTextField(
+      name: name,
+      onChanged: onChanged ??
+          (str) {
+            return str;
+          },
+      validator: FormBuilderValidators.compose(
+          [FormBuilderValidators.required(context)]),
+      obscureText: isPassword,
+      obscuringCharacter: '*',
+      decoration: InputDecoration(
+        focusColor: Colors.cyan[400],
+        icon: icon,
+        labelText: label,
+        hintText: hint,
+        hintStyle: TextStyle(color: Colors.grey[400])
+      ),
     );
   }
 

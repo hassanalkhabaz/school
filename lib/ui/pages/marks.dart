@@ -1,5 +1,7 @@
+import 'package:flu/ui/widgets/DropDownField.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class Marks extends StatefulWidget {
   @override
@@ -7,48 +9,52 @@ class Marks extends StatefulWidget {
 }
 
 class _MarksState extends State<Marks> {
-  String _chosenValue;
+  final _formKey = GlobalKey<FormBuilderState>();
+  double verticalSpacing = 40;
+  double horizontalPadding = 10;
+  double verticalPadding = 10;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(drawer: MyDrawer(),
+    return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         title: Text('marks'),
+        backgroundColor: Colors.cyan[400],
+        bottom: buildDropDwonSelectionField(),
       ),
       body: Center(
-        child: Container(
-          padding: const EdgeInsets.all(0.0),
-          child: DropdownButton<String>(
-            value: _chosenValue,
-            //elevation: 5,
-            style: TextStyle(color: Colors.black),
+        child: Text('Mark is 20'),
+      ),
+    );
+  }
 
-            items: <String>[
-              'math',
-              'arabic',
-              'English',
-              'sienc',
-
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-            hint: Text(
-              "Please choose a subject",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
-            ),
-            onChanged: (String value) {
-              setState(() {
-                _chosenValue = value;
-              });
-            },
-          ),
+  PreferredSize buildDropDwonSelectionField() {
+    return PreferredSize(
+      preferredSize: Size(0, verticalSpacing * 3),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding,
+          vertical: verticalPadding,
         ),
+        child: Column(children: <Widget>[
+          FormBuilder(
+            key: _formKey,
+            child: Column(children: [
+              DropDownField(
+                //TODO:init values
+                items: ['arabic', 'math'],
+                onChange: (fd) {},
+              ),
+              SizedBox(height: horizontalPadding),
+              DropDownField(
+                //TODO:init values
+                items: ['mid', 'final'],
+                onChange: (fd) {},
+              ),
+            ]),
+          )
+        ]),
       ),
     );
   }

@@ -10,6 +10,7 @@ import 'package:flu/ui/pages/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/pages/logIn.dart';
 import 'package:flu/ui/pages/home.dart';
+import 'package:flu/ui/pages/attendance.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/notifications': (context) => Notifications(),
         '/programs': (context) => Programs(),
         '/homeworks': (context) => Homeworks(),
-        '/attendance': (context) => Homeworks(),
+        '/attendance': (context) => Attendance(),
       },
       home: LogIn(),
     );

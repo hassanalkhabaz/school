@@ -1,3 +1,5 @@
+import 'package:flu/api/api_helper.dart';
+import 'package:flu/model/alert_model.dart';
 import 'package:flu/ui/widgets/CardView.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +9,17 @@ class Alerts extends StatefulWidget {
 }
 
 class _AlertsState extends State<Alerts> {
-  double horizontalPadding = 10;
+  bool _isLoading = true;
+  List<AlertModel> alertList = [];
   TextStyle textStyle;
+  double horizontalPadding = 10;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAlertsData();
+  }
+
   @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
@@ -23,23 +34,27 @@ class _AlertsState extends State<Alerts> {
         backgroundColor: Colors.cyan[400],
         bottom: buildBottomShape(),
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: alertData.length,
-          itemBuilder: (context, index) {
-            return CardView(
-              cardHeader: Text(alertData[index]['date'],
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black54,
-                  )),
-              cardBody: buildCardBody(
-                alertData[index]['description'],
-              ),
-            );
-          },
-        ),
-      ),
+      body: !_isLoading
+          ? alertList != null
+              ? Container(
+                  child: ListView.builder(
+                    itemCount: alertList.length,
+                    itemBuilder: (context, index) {
+                      return CardView(
+                        cardHeader: Text(alertList[index].date.toString(),
+                            style:
+                                TextStyle(fontSize: 14, color: Colors.black54)),
+                        cardBody: buildCardBody(alertList[index].reason),
+                      );
+                    },
+                  ),
+                )
+              : Center(
+                  child: Text('No Alerts Found'),
+                )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 
@@ -81,14 +96,12 @@ class _AlertsState extends State<Alerts> {
     );
   }
 
-  //TODO: temp data for testing
-  List alertData = [
-    {'date': 'May 2,2021', 'description': 'some description about the alerts!'},
-    {'date': 'May 3,2021', 'description': 'some description about the alerts!'},
-    {'date': 'May 4,2021', 'description': 'some description about the alerts!'},
-    {'date': 'May 5,2021', 'description': 'some description about the alerts!'},
-    {'date': 'May 6,2021', 'description': 'some description about the alerts!'},
-    {'date': 'May 7,2021', 'description': 'some description about the alerts!'},
-    {'date': 'May 8,2021', 'description': 'some description about the alerts!'},
-  ];
+// Secreen Logic
+  void fetchAlertsData() async {
+    final data = await ApiHelper().getAlerts(1);
+    setState(() {
+      alertList = data;
+      _isLoading = false;
+    });
+  }
 }

@@ -12,40 +12,61 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return  Scaffold(
-        appBar: AppBar(
-          title: Text('home'),
-          backgroundColor: Colors.cyan[400],
-        ),
-        drawer: MyDrawer(),
-        body: Column(
-          children: [
-            // Center(
-            //   child: SizedBox(
-            //     height: 300.0,
-            //     width: double.infinity,
-            //     child: Carousel(
-            //       boxFit: BoxFit.cover,
-            //       autoplay: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('home'),
+        backgroundColor: Colors.cyan[400],
+      ),
+      drawer: MyDrawer(),
+      body: Column(
+        children: [
+          coloredCard(title: 'Alerts', content:'2', colors: 2),
+          coloredCard(title: 'Activities', content:'0', colors: 3),
+          coloredCard(title: 'Homeworks', content:'1', colors: 4),
+          coloredCard(title: 'Something', content:'4', colors: 1),
+        ],
+      ),
+    );
+  }
 
-                  
-            //       dotSize: 6.0,
-            //       dotIncreasedColor: Colors.cyan,
-            //       dotBgColor: Colors.transparent,
-            //       dotPosition: DotPosition.bottomCenter,
-            //       dotVerticalPadding: 10.0,
-            //       showIndicator: true,
-            //       indicatorBgPadding: 7.0,
-            //       images: [
-            //         AssetImage('images/image_class2.jpg'),
-            //         AssetImage('images/image_class3.jpg'),
-            //         AssetImage('images/image_class.jpg')
-            //       ],
-            //     ),
-            //   ),
-            // )
+  Container coloredCard({title, content, int colors = 0}) {
+    var colorsOps = [
+      [Colors.indigo[300], Colors.purple[300]],
+      [Colors.blue[300], Colors.indigo[300]],
+      [Colors.lightGreen[300], Colors.green[300]],
+      [Colors.purple[300], Colors.pink[300]],
+      [Colors.orange[300], Colors.deepOrange[300]],
+    ];
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+                color: Colors.grey[50],
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
+          ),
+          Text(
+            content,
+            style: TextStyle(fontSize: 16, color: Colors.grey[50]),
+          ),
+        ],
+      ),
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black26,
+                spreadRadius: 3,
+                offset: Offset(0, 2),
+                blurRadius: 8)
           ],
-        ),
+          gradient: LinearGradient(colors: colorsOps[colors])),
+      height: 80,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flu/model/alert_model.dart';
 import 'package:flu/model/attendancemodel.dart';
 import 'package:flu/model/homeWork_model.dart';
+import 'package:flu/model/login_model.dart';
 import 'package:flu/model/payment_model.dart';
 import 'package:flu/model/program_model.dart';
 import 'package:http/http.dart' as http;
@@ -8,6 +9,19 @@ import 'package:http/http.dart' as http;
 class ApiHelper {
   final String _baseUrl = '78.47.183.107:5000';
   final int _requestTimeout = 80;
+
+Future<LoginModel> login(String username, String password) async {
+    final url = Uri.http(_baseUrl, '/api/Account/Login');
+    print("url: $url");
+    final response =
+        await http.post(url).timeout(Duration(seconds: _requestTimeout));
+
+    if (response.statusCode == 200) {
+      return loginModelFromJson(response.body);
+    } else {
+      print("response: ${response.body}");
+    }
+  }
 
   Future<List<AlertModel>> getAlerts(int id) async {
     final url = Uri.http(_baseUrl, '/api/Parent/GetAlarm', {'id': '$id'});

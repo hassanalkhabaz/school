@@ -19,7 +19,7 @@ class _HomeworksState extends State<Homeworks> {
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
-        title: Text('home works'),
+        title: Text('homeworks'),
         backgroundColor: Colors.purple[400],
         bottom: buildDropDwonSelectionField(),
       ),

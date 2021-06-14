@@ -1,3 +1,4 @@
+import 'package:flu/ui/widgets/CardView.dart';
 import 'package:flu/ui/widgets/DropDownField.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
@@ -13,9 +14,14 @@ class _HomeworksState extends State<Homeworks> {
   double verticalSpacing = 40;
   double horizontalPadding = 10;
   double verticalPadding = 10;
+  TextStyle textStyle;
 
   @override
   Widget build(BuildContext context) {
+    textStyle = TextStyle(
+      fontSize: 15,
+      color: Colors.black54,
+    );
     return Scaffold(
       drawer: MyDrawer(),
       appBar: AppBar(
@@ -23,7 +29,30 @@ class _HomeworksState extends State<Homeworks> {
         backgroundColor: Colors.purple[400],
         bottom: buildDropDwonSelectionField(),
       ),
-      body: Container(),
+      body: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (BuildContext context, int index) {
+          return CardView(
+            cardHeader: Text('2-05-2021'),
+            cardBody: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Description',
+                    style: textStyle,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('end data', style: textStyle),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -41,6 +70,7 @@ class _HomeworksState extends State<Homeworks> {
             child: Column(children: [
               DropDownField(
                 //TODO:init values
+                hint: 'Select Subject',
                 items: ['sd', 'sdf'],
                 onChange: (fd) {},
               )

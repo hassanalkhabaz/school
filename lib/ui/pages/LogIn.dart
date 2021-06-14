@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class LogIn extends StatelessWidget {
-  ///default = 40
   double verticalSpacing = 40;
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class LogIn extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                colors: [Colors.cyan[500], Colors.cyan[200], Colors.cyan[400]]),
+                colors: [Colors.purple[300], Colors.purple[400]]),
           ),
           child: Column(
             children: <Widget>[
@@ -65,7 +64,7 @@ class LogIn extends StatelessWidget {
                 textField(context,
                     icon: Icon(
                       Icons.person,
-                      color: Colors.cyan,
+                      color: Colors.purple,
                     ),
                     name: 'username',
                     label: 'Username',
@@ -77,7 +76,7 @@ class LogIn extends StatelessWidget {
                 textField(context,
                     icon: Icon(
                       Icons.person,
-                      color: Colors.cyan,
+                      color: Colors.purple,
                     ),
                     name: 'password',
                     label: 'Password',
@@ -113,7 +112,7 @@ class LogIn extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 50),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: Colors.cyan[400],
+          color: Colors.purple[400],
           child: Text(
             'Login',
             style: TextStyle(
@@ -142,7 +141,7 @@ class LogIn extends StatelessWidget {
       obscureText: isPassword,
       obscuringCharacter: '*',
       decoration: InputDecoration(
-          focusColor: Colors.cyan[400],
+          focusColor: Colors.purple[400],
           icon: icon,
           labelText: label,
           hintText: hint,

@@ -1,3 +1,4 @@
+import 'package:flu/ui/pages/activities.dart';
 import 'package:flu/ui/pages/alerts.dart';
 import 'package:flu/ui/pages/forgot_password.dart';
 import 'package:flu/ui/pages/homeworks.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'MY SCHOOL',
       routes: {
         '/splash': (context) => Splash(),
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/programs': (context) => Programs(),
         '/homeworks': (context) => Homeworks(),
         '/attendance': (context) => Attendance(),
+        '/activities': (context) => Activities(),
       },
       home: LogIn(),
     );

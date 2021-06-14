@@ -12,7 +12,7 @@ class _PaymentsState extends State<Payments> {
   @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
-      fontSize: 20,
+      fontSize: 15,
       color: Colors.black54,
     );
 
@@ -20,7 +20,7 @@ class _PaymentsState extends State<Payments> {
         appBar: AppBar(
           elevation: 0,
           title: Text('Payments'),
-          backgroundColor: Colors.cyan[400],
+          backgroundColor: Colors.purple[400],
           bottom: buildBottomShape(),
         ),
         body: Container(

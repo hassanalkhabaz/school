@@ -14,7 +14,7 @@ class HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text('home'),
-        backgroundColor: Colors.cyan[400],
+        backgroundColor: Colors.purple[400],
       ),
       drawer: MyDrawer(),
       body: Column(

@@ -12,14 +12,14 @@ class AattendanceState extends State<Attendance> {
   @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
-      fontSize: 20,
+      fontSize: 15,
       color: Colors.black54,
     );
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: Text('Attendance'),
-        backgroundColor: Colors.cyan[400],
+        backgroundColor: Colors.purple[400],
         bottom: buildBottomShape(),
       ),
       body: Container(
@@ -67,7 +67,7 @@ class AattendanceState extends State<Attendance> {
           trailing: Text(
             value == 1 ? 'Yes' : 'No',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 15,
               color: value == 1 ? Colors.green : Colors.red,
             ),
           ),

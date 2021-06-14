@@ -1,50 +1,48 @@
-import 'package:flu/ui/widgets/InputField.dart';
+import 'package:flu/ui/widgets/custom_button.dart';
+import 'package:flu/ui/widgets/fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('change your password'),
-        ),
-        drawer: MyDrawer(),
-      body:  SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              child: InputField(lableText:  "new password",icon: Icon(Icons.vpn_key),isPassword: true,),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              margin: EdgeInsets.symmetric(vertical: 70),
-              decoration: BoxDecoration(
-                color: Colors.cyan,
-                borderRadius: BorderRadius.circular(29),
-              ),
+        home: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.purple[400],
+        title: Text('Change password'),
+      ),
+      drawer: MyDrawer(),
+      body: SingleChildScrollView(
+        child: FormBuilder(
+            child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(children: [
+            SizedBox(height: 20),
+            textField(
+              context,
+              isPassword: true,
+              label: 'Current password',
+              name: 'current_password',
+              onChanged: (val) {},
+              hint: 'Enter your current password',
             ),
-            Container(
-                child: InputField(lableText:  "confirm your password",icon: Icon(Icons.vpn_key),isPassword: true,),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                margin: EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  color: Colors.cyan,
-                  borderRadius: BorderRadius.circular(29),
-                )),
-            SizedBox(
-              height: 60,
+            SizedBox(height: 10),
+            textField(
+              context,
+              isPassword: true,
+              label: 'New password',
+              name: 'new_password',
+              onChanged: (val) {},
+              hint: 'Enter your new password',
             ),
-            Container(
-              child: FlatButton(
-                child: Text('save'),
-                onPressed: () {},
-                color: Colors.cyan,
-              ),
-            )
-          ],
-        ),
-      )),
-    );
+            SizedBox(height: 10),
+            CustomButton(onPressed: () {}, title: 'Save'),
+          ]),
+        )),
+      ),
+    ));
   }
 }

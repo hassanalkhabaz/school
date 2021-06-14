@@ -27,7 +27,7 @@ class ForgotPassword extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 margin: EdgeInsets.symmetric(vertical: 70),
                 decoration: BoxDecoration(
-                  color: Colors.cyan[500],
+                  color: Colors.purple[500],
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -44,7 +44,7 @@ class ForgotPassword extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   margin: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    color: Colors.cyan[500],
+                    color: Colors.purple[500],
                     borderRadius: BorderRadius.circular(20),
                   )),
               SizedBox(
@@ -57,7 +57,7 @@ class ForgotPassword extends StatelessWidget {
                     Navigator.of(context)
                         .pushNamed('change_password_after_valudation');
                   },
-                  color: Colors.cyan,
+                  color: Colors.purple,
                 ),
               )
             ],

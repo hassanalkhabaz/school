@@ -20,7 +20,7 @@ class _MarksState extends State<Marks> {
       drawer: MyDrawer(),
       appBar: AppBar(
         title: Text('marks'),
-        backgroundColor: Colors.cyan[400],
+        backgroundColor: Colors.purple[400],
         bottom: buildDropDwonSelectionField(),
       ),
       body: Center(

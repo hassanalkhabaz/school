@@ -23,7 +23,7 @@ class _AlertsState extends State<Alerts> {
   @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
-      fontSize: 20,
+      fontSize: 15,
       color: Colors.black54,
     );
 
@@ -31,7 +31,7 @@ class _AlertsState extends State<Alerts> {
       appBar: AppBar(
         elevation: 0,
         title: Text('Alerts'),
-        backgroundColor: Colors.cyan[400],
+        backgroundColor: Colors.purple[400],
         bottom: buildBottomShape(),
       ),
       body: !_isLoading
@@ -89,7 +89,7 @@ class _AlertsState extends State<Alerts> {
           ),
           subtitle: Text(
             description,
-            style: TextStyle(height: 2),
+            style: textStyle,
           ),
         ),
       ],

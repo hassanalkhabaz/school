@@ -1,3 +1,5 @@
+import 'package:flu/api/api_helper.dart';
+import 'package:flu/model/payment_model.dart';
 import 'package:flu/ui/widgets/CardView.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +9,9 @@ class Payments extends StatefulWidget {
 }
 
 class _PaymentsState extends State<Payments> {
+  bool _isLoading = true;
+  List<PaymentModel> paymentsList = [];
+
   double horizontalPadding = 10;
   TextStyle textStyle;
   @override
@@ -17,30 +22,40 @@ class _PaymentsState extends State<Payments> {
     );
 
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: Text('Payments'),
-          backgroundColor: Colors.purple[400],
-          bottom: buildBottomShape(),
-        ),
-        body: Container(
-            child: ListView.builder(
-                itemCount: payData.length,
-                itemBuilder: (context, index) {
-                  return CardView(
-                    cardHeader: Text(
-                      payData[index]['date'],
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    cardBody: buildCardBody(
-                      payData[index]['paid'],
-                      payData[index]['remain'],
-                    ),
-                  );
-                })));
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('Payments'),
+        backgroundColor: Colors.purple[400],
+        bottom: buildBottomShape(),
+      ),
+      body: !_isLoading
+          ? paymentsList != null
+              ? Container(
+                  child: Container(
+                      child: ListView.builder(
+                          itemCount: paymentsList.length,
+                          itemBuilder: (context, index) {
+                            return CardView(
+                              cardHeader: Text(
+                                paymentsList[index].paidDate.toString(),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              cardBody: buildCardBody(
+                                paymentsList[index].paidFees.toString(),
+                                paymentsList[index].unPaidFees.toString(),
+                              ),
+                            );
+                          })))
+              : Center(
+                  child: Text('No Alerts Found'),
+                )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
+    );
   }
 
   PreferredSize buildBottomShape() {
@@ -84,14 +99,12 @@ class _PaymentsState extends State<Payments> {
     );
   }
 
-  //TODO: temp data for testing
-  List payData = [
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-    {'date': 'May 2,2021', 'paid': '1200 S.P', 'remain': '300 S.P'},
-  ];
+// Secreen Logic
+  void fetchPaymentsData() async {
+    final data = await ApiHelper().getPayments(1);
+    setState(() {
+      paymentsList = data;
+      _isLoading = false;
+    });
+  }
 }

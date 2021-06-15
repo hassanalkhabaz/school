@@ -1,3 +1,5 @@
+import 'package:flu/api/api_helper.dart';
+import 'package:flu/model/homeWork_model.dart';
 import 'package:flu/ui/widgets/CardView.dart';
 import 'package:flu/ui/widgets/DropDownField.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,8 @@ class Homeworks extends StatefulWidget {
 }
 
 class _HomeworksState extends State<Homeworks> {
+  bool _isLoading = true;
+  List<HomeWorkModel> homeworkList = [];
   final _formKey = GlobalKey<FormBuilderState>();
   double verticalSpacing = 40;
   double horizontalPadding = 10;
@@ -29,30 +33,40 @@ class _HomeworksState extends State<Homeworks> {
         backgroundColor: Colors.purple[400],
         bottom: buildDropDwonSelectionField(),
       ),
-      body: ListView.builder(
-        itemCount: 3,
-        itemBuilder: (BuildContext context, int index) {
-          return CardView(
-            cardHeader: Text('2-05-2021'),
-            cardBody: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Description',
-                    style: textStyle,
+      body: !_isLoading
+          ? homeworkList != null
+              ? Container(
+                  child: ListView.builder(
+                    itemCount: homeworkList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CardView(
+                        cardHeader: Text(homeworkList[index].startDate.toString()),
+                        cardBody: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                homeworkList[index].description,
+                                style: textStyle,
+                              ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(homeworkList[index].endDate.toString(), style: textStyle),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text('end data', style: textStyle),
-                  )
-                ],
-              ),
+                )
+              : Center(
+                  child: Text('No Homeworks Found'),
+                )
+          : Center(
+              child: CircularProgressIndicator(),
             ),
-          );
-        },
-      ),
     );
   }
 
@@ -79,5 +93,14 @@ class _HomeworksState extends State<Homeworks> {
         ]),
       ),
     );
+  }
+
+  // Secreen Logic
+  void fetchHomeworkData() async {
+    final data = await ApiHelper().getHomeWorks();
+    setState(() {
+      homeworkList = data;
+      _isLoading = false;
+    });
   }
 }

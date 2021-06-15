@@ -1,7 +1,9 @@
+import 'package:flu/model/activity_nodel.dart';
 import 'package:flu/model/alert_model.dart';
 import 'package:flu/model/attendancemodel.dart';
 import 'package:flu/model/homeWork_model.dart';
 import 'package:flu/model/login_model.dart';
+import 'package:flu/model/mark_model.dart';
 import 'package:flu/model/payment_model.dart';
 import 'package:flu/model/program_model.dart';
 import 'package:http/http.dart' as http;
@@ -44,6 +46,32 @@ Future<LoginModel> login(String username, String password) async {
 
     if (response.statusCode == 200) {
       return homeWorkModelFromJson(response.body);
+    } else {
+      print("response: ${response.body}");
+    }
+  }
+  
+  Future<List<ActivityModel>> getActivities() async {
+    final url = Uri.http(_baseUrl, '/api/School/GetActVac');
+    print("url: $url");
+    final response =
+        await http.get(url).timeout(Duration(seconds: _requestTimeout));
+
+    if (response.statusCode == 200) {
+      return activityModelFromJson(response.body);
+    } else {
+      print("response: ${response.body}");
+    }
+  }
+  
+  Future<List<MarkModel>> getMarks() async {
+    final url = Uri.http(_baseUrl, '/api/Parent/GetMarks');
+    print("url: $url");
+    final response =
+        await http.get(url).timeout(Duration(seconds: _requestTimeout));
+
+    if (response.statusCode == 200) {
+      return markModelFromJson(response.body);
     } else {
       print("response: ${response.body}");
     }

@@ -2,16 +2,14 @@ new screens (2500):
     - payment
     - marks
     - program
-    - notifications
     - attendace
-    - splash
     - alerts
+    - home + drawer
+    - profile
 
 
 fixed screens (1500):
     - login
 
 - to discuss about:
-    - home + drawer
-    - profile
 

@@ -1,3 +1,4 @@
+import 'package:flu/api/api_helper.dart';
 import 'package:flutter/material.dart';
 
 class Programs extends StatefulWidget {
@@ -6,12 +7,22 @@ class Programs extends StatefulWidget {
 }
 
 class _ProgramsState extends State<Programs> {
+  bool _isLoading = true;
+var programe;
+  @override
+  void initState() {
+    super.initState();
+    fetchProgrameData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
           AppBar(title: Text('Programme'), backgroundColor: Colors.purple[400]),
-      body: Padding(
+      body:  !_isLoading
+          ? programe != null
+              ? Container(
+                  child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
@@ -34,6 +45,23 @@ class _ProgramsState extends State<Programs> {
           ],
         ),
       ),
+      )
+              : Center(
+                  child: Text('No Alerts Found'),
+                )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
+  }
+
+  // Secreen Logic
+  void fetchProgrameData() async {
+    int userId=1;
+    final data = await ApiHelper().getProgram(userId);
+    setState(() {
+      programe = data;
+      _isLoading = false;
+    });
   }
 }

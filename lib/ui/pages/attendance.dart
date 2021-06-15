@@ -1,3 +1,5 @@
+import 'package:flu/api/api_helper.dart';
+import 'package:flu/model/attendancemodel.dart';
 import 'package:flu/ui/widgets/CardView.dart';
 import 'package:flutter/material.dart';
 
@@ -7,8 +9,17 @@ class Attendance extends StatefulWidget {
 }
 
 class AattendanceState extends State<Attendance> {
-  double horizontalPadding = 10;
+  bool _isLoading = true;
+  List<AttendanceModel> attendanceList = [];
   TextStyle textStyle;
+  double horizontalPadding = 10;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchAttendanceData();
+  }
+
   @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
@@ -22,18 +33,31 @@ class AattendanceState extends State<Attendance> {
         backgroundColor: Colors.purple[400],
         bottom: buildBottomShape(),
       ),
-      body: Container(
-        child: ListView.builder(
-          itemCount: attendData.length,
-          itemBuilder: (context, index) {
-            return CardView(
-              cardHeader: Text(attendData[index]['date'],
-                  style: TextStyle(fontSize: 14, color: Colors.black54)),
-              cardBody: buildCardBody(attendData[index]['attendees']),
-            );
-          },
-        ),
-      ),
+      body: !_isLoading
+          ? attendanceList != null
+              ? Container(
+                  child: Container(
+                    child: ListView.builder(
+                      itemCount: attendanceList.length,
+                      itemBuilder: (context, index) {
+                        return CardView(
+                          cardHeader: Text(
+                              attendanceList[index].date.toString(),
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.black54)),
+                          cardBody:
+                              buildCardBody(attendanceList[index].isPresense),
+                        );
+                      },
+                    ),
+                  ),
+                )
+              : Center(
+                  child: Text('No Attendance Found'),
+                )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 
@@ -76,14 +100,12 @@ class AattendanceState extends State<Attendance> {
     );
   }
 
-  //TODO: temp data for testingv
-  List attendData = [
-    {'date': 'May 1,2021', 'attendees': 1},
-    {'date': 'May 2,2021', 'attendees': 0},
-    {'date': 'May 3,2021', 'attendees': 1},
-    {'date': 'May 4,2021', 'attendees': 0},
-    {'date': 'May 5,2021', 'attendees': 0},
-    {'date': 'May 6,2021', 'attendees': 1},
-    {'date': 'May 7,2021', 'attendees': 1},
-  ];
+  // Secreen Logic
+  void fetchAttendanceData() async {
+    final data = await ApiHelper().getAttendances();
+    setState(() {
+      attendanceList = data;
+      _isLoading = false;
+    });
+  }
 }

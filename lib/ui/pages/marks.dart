@@ -1,3 +1,5 @@
+import 'package:flu/api/api_helper.dart';
+import 'package:flu/model/mark_model.dart';
 import 'package:flu/ui/widgets/DropDownField.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
@@ -9,6 +11,15 @@ class Marks extends StatefulWidget {
 }
 
 class _MarksState extends State<Marks> {
+  bool _isLoading = true;
+  List<MarkModel> marksList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMarksData();
+  }
+
   final _formKey = GlobalKey<FormBuilderState>();
   double verticalSpacing = 40;
   double horizontalPadding = 10;
@@ -23,9 +34,19 @@ class _MarksState extends State<Marks> {
         backgroundColor: Colors.purple[400],
         bottom: buildDropDwonSelectionField(),
       ),
-      body: Center(
-        child: Text('Mark is 20'),
-      ),
+      body: !_isLoading
+          ? marksList != null
+              ? Container(
+                  child: Center(
+                    child: Text(marksList[0].degree.toString()),
+                  ),
+                )
+              : Center(
+                  child: Text('No Marks Found'),
+                )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 
@@ -57,5 +78,14 @@ class _MarksState extends State<Marks> {
         ]),
       ),
     );
+  }
+  
+// Secreen Logic
+  void fetchMarksData() async {
+    final data = await ApiHelper().getMarks();
+    setState(() {
+      marksList = data;
+      _isLoading = false;
+    });
   }
 }

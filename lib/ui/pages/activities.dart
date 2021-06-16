@@ -14,6 +14,11 @@ class _ActivitiesState extends State<Activities> {
   List<ActivityModel> activitiesList = [];
   TextStyle textStyle;
   @override
+  void initState() {
+    super.initState();
+    fetchActivitiesData();
+  }
+  @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
       fontSize: 15,
@@ -89,7 +94,7 @@ class _ActivitiesState extends State<Activities> {
   }
 
 // Secreen Logic
-  void fetchAlertsData() async {
+  void fetchActivitiesData() async {
       _isLoading = true;
     final data = await ApiHelper().getActivities();
     setState(() {

@@ -19,7 +19,11 @@ class _HomeworksState extends State<Homeworks> {
   double horizontalPadding = 10;
   double verticalPadding = 10;
   TextStyle textStyle;
-
+@override
+  void initState() {
+    super.initState();
+    fetchHomeworkData();
+  }
   @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(

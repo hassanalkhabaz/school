@@ -15,6 +15,11 @@ class _PaymentsState extends State<Payments> {
   double horizontalPadding = 10;
   TextStyle textStyle;
   @override
+  void initState() {
+    super.initState();
+    fetchPaymentsData();
+  }
+  @override
   Widget build(BuildContext context) {
     textStyle = TextStyle(
       fontSize: 15,
@@ -50,7 +55,7 @@ class _PaymentsState extends State<Payments> {
                             );
                           })))
               : Center(
-                  child: Text('No Alerts Found'),
+                  child: Text('No Payments Found'),
                 )
           : Center(
               child: CircularProgressIndicator(),

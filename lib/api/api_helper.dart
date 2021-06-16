@@ -14,7 +14,7 @@ class ApiHelper {
   final String _baseUrl = '78.47.183.107:5000';
   final int _requestTimeout = 80;
 
-Future<LoginModel> login(String username, String password) async {
+  Future<LoginModel> login(String username, String password) async {
     final url = Uri.http(_baseUrl, '/api/Account/Login');
     print("url: $url");
     final response =
@@ -26,8 +26,9 @@ Future<LoginModel> login(String username, String password) async {
       print("response: ${response.body}");
     }
   }
+
   //? profile
-Future<LoginModel> resetPassword(String oldPass, String newPass) async {
+  Future<LoginModel> resetPassword(String oldPass, String newPass) async {
     final url = Uri.http(_baseUrl, '/api/Account/UserResetPassword');
     print("url: $url");
     final response =
@@ -45,9 +46,9 @@ Future<LoginModel> resetPassword(String oldPass, String newPass) async {
     print("url: $url");
     final response =
         await http.get(url).timeout(Duration(seconds: _requestTimeout));
-
-    var model = json.decode(response.body);
-    return model['succeeded'];
+    var model;
+    if (response.body != "") model = json.decode(response.body);
+    return model;
   }
 
   Future<List<HomeWorkModel>> getHomeWorks() async {
@@ -62,7 +63,7 @@ Future<LoginModel> resetPassword(String oldPass, String newPass) async {
       print("response: ${response.body}");
     }
   }
-  
+
   Future<List<ActivityModel>> getActivities() async {
     final url = Uri.http(_baseUrl, '/api/School/GetActVac');
     print("url: $url");
@@ -75,7 +76,7 @@ Future<LoginModel> resetPassword(String oldPass, String newPass) async {
       print("response: ${response.body}");
     }
   }
-  
+
   Future<List<MarkModel>> getMarks() async {
     final url = Uri.http(_baseUrl, '/api/Parent/GetMarks');
     print("url: $url");

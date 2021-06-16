@@ -71,13 +71,7 @@ class MyDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed('/marks');
             },
           ),
-          buildListTile(
-            title: 'Notifications',
-            icon: Icon(Icons.notification_important),
-            onTap: () {
-              Navigator.of(context).pushNamed('/notifications');
-            },
-          ),
+          
           buildListTile(
             title: 'Programs',
             icon: Icon(Icons.photo_rounded),

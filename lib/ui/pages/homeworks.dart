@@ -30,7 +30,7 @@ class _HomeworksState extends State<Homeworks> {
       drawer: MyDrawer(),
       appBar: AppBar(
         title: Text('homeworks'),
-        backgroundColor: Colors.purple[400],
+        backgroundColor: Colors.indigo[400],
         bottom: buildDropDwonSelectionField(),
       ),
       body: !_isLoading
@@ -97,6 +97,7 @@ class _HomeworksState extends State<Homeworks> {
 
   // Secreen Logic
   void fetchHomeworkData() async {
+      _isLoading = true;
     final data = await ApiHelper().getHomeWorks();
     setState(() {
       homeworkList = data;

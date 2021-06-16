@@ -31,7 +31,7 @@ class _MarksState extends State<Marks> {
       drawer: MyDrawer(),
       appBar: AppBar(
         title: Text('marks'),
-        backgroundColor: Colors.purple[400],
+        backgroundColor: Colors.indigo[400],
         bottom: buildDropDwonSelectionField(),
       ),
       body: !_isLoading
@@ -82,6 +82,7 @@ class _MarksState extends State<Marks> {
   
 // Secreen Logic
   void fetchMarksData() async {
+      _isLoading = true;
     final data = await ApiHelper().getMarks();
     setState(() {
       marksList = data;

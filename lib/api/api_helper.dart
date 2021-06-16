@@ -1,4 +1,6 @@
-import 'package:flu/model/activity_nodel.dart';
+import 'dart:convert';
+
+import 'package:flu/model/activity_model.dart';
 import 'package:flu/model/alert_model.dart';
 import 'package:flu/model/attendancemodel.dart';
 import 'package:flu/model/homeWork_model.dart';
@@ -24,6 +26,19 @@ Future<LoginModel> login(String username, String password) async {
       print("response: ${response.body}");
     }
   }
+  //? profile
+Future<LoginModel> resetPassword(String oldPass, String newPass) async {
+    final url = Uri.http(_baseUrl, '/api/Account/UserResetPassword');
+    print("url: $url");
+    final response =
+        await http.post(url).timeout(Duration(seconds: _requestTimeout));
+
+    if (response.statusCode == 200) {
+      return loginModelFromJson(response.body);
+    } else {
+      print("response: ${response.body}");
+    }
+  }
 
   Future<List<AlertModel>> getAlerts(int id) async {
     final url = Uri.http(_baseUrl, '/api/Parent/GetAlarm', {'id': '$id'});
@@ -31,11 +46,8 @@ Future<LoginModel> login(String username, String password) async {
     final response =
         await http.get(url).timeout(Duration(seconds: _requestTimeout));
 
-    if (response.statusCode == 200) {
-      return alertModelFromJson(response.body);
-    } else {
-      print("response: ${response.body}");
-    }
+    var model = json.decode(response.body);
+    return model['succeeded'];
   }
 
   Future<List<HomeWorkModel>> getHomeWorks() async {

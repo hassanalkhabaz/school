@@ -30,7 +30,7 @@ class AattendanceState extends State<Attendance> {
       appBar: AppBar(
         elevation: 0,
         title: Text('Attendance'),
-        backgroundColor: Colors.purple[400],
+        backgroundColor: Colors.indigo[400],
         bottom: buildBottomShape(),
       ),
       body: !_isLoading
@@ -102,6 +102,7 @@ class AattendanceState extends State<Attendance> {
 
   // Secreen Logic
   void fetchAttendanceData() async {
+      _isLoading = true;
     final data = await ApiHelper().getAttendances();
     setState(() {
       attendanceList = data;

@@ -31,7 +31,7 @@ class _AlertsState extends State<Alerts> {
       appBar: AppBar(
         elevation: 0,
         title: Text('Alerts'),
-        backgroundColor: Colors.purple[400],
+        backgroundColor: Colors.indigo[400],
         bottom: buildBottomShape(),
       ),
       body: !_isLoading
@@ -98,6 +98,7 @@ class _AlertsState extends State<Alerts> {
 
 // Secreen Logic
   void fetchAlertsData() async {
+      _isLoading = true;
     final data = await ApiHelper().getAlerts(1);
     setState(() {
       alertList = data;

@@ -15,7 +15,7 @@ class LogIn extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                colors: [Colors.purple[300], Colors.purple[400]]),
+                colors: [Colors.indigo[300], Colors.indigo[400]]),
           ),
           child: Column(
             children: <Widget>[
@@ -64,7 +64,7 @@ class LogIn extends StatelessWidget {
                 textField(context,
                     icon: Icon(
                       Icons.person,
-                      color: Colors.purple,
+                      color: Colors.indigo,
                     ),
                     name: 'username',
                     label: 'Username',
@@ -76,7 +76,7 @@ class LogIn extends StatelessWidget {
                 textField(context,
                     icon: Icon(
                       Icons.person,
-                      color: Colors.purple,
+                      color: Colors.indigo,
                     ),
                     name: 'password',
                     label: 'Password',
@@ -90,17 +90,7 @@ class LogIn extends StatelessWidget {
         SizedBox(
           height: verticalSpacing * .5,
         ),
-        TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.symmetric(
-                vertical: verticalSpacing * .5), // to make an equal spacing
-          ),
-          child: Text(
-            'forget password ?',
-            style: TextStyle(color: Colors.grey),
-          ),
-        ),
+        
         SizedBox(
           height: verticalSpacing * .5,
         ),
@@ -112,7 +102,7 @@ class LogIn extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 50),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          color: Colors.purple[400],
+          color: Colors.indigo[400],
           child: Text(
             'Login',
             style: TextStyle(
@@ -141,7 +131,7 @@ class LogIn extends StatelessWidget {
       obscureText: isPassword,
       obscuringCharacter: '*',
       decoration: InputDecoration(
-          focusColor: Colors.purple[400],
+          focusColor: Colors.indigo[400],
           icon: icon,
           labelText: label,
           hintText: hint,

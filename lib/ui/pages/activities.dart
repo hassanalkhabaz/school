@@ -1,5 +1,5 @@
 import 'package:flu/api/api_helper.dart';
-import 'package:flu/model/activity_nodel.dart';
+import 'package:flu/model/activity_model.dart';
 import 'package:flu/ui/widgets/CardView.dart';
 import 'package:flu/ui/widgets/MyDrawer.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +23,7 @@ class _ActivitiesState extends State<Activities> {
       appBar: AppBar(
         elevation: 0,
         title: Text('Ativities'),
-        backgroundColor: Colors.purple[400],
+        backgroundColor: Colors.indigo[400],
         bottom: buildBottomShape(),
       ),
       drawer: MyDrawer(),
@@ -90,6 +90,7 @@ class _ActivitiesState extends State<Activities> {
 
 // Secreen Logic
   void fetchAlertsData() async {
+      _isLoading = true;
     final data = await ApiHelper().getActivities();
     setState(() {
       activitiesList = data;

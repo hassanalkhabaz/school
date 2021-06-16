@@ -25,7 +25,7 @@ class _PaymentsState extends State<Payments> {
       appBar: AppBar(
         elevation: 0,
         title: Text('Payments'),
-        backgroundColor: Colors.purple[400],
+        backgroundColor: Colors.indigo[400],
         bottom: buildBottomShape(),
       ),
       body: !_isLoading
@@ -101,6 +101,7 @@ class _PaymentsState extends State<Payments> {
 
 // Secreen Logic
   void fetchPaymentsData() async {
+      _isLoading = true;
     final data = await ApiHelper().getPayments(1);
     setState(() {
       paymentsList = data;

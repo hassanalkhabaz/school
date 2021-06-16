@@ -18,7 +18,7 @@ var programe;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          AppBar(title: Text('Programme'), backgroundColor: Colors.purple[400]),
+          AppBar(title: Text('Programme'), backgroundColor: Colors.indigo[400]),
       body:  !_isLoading
           ? programe != null
               ? Container(
@@ -37,7 +37,7 @@ var programe;
                 borderRadius: BorderRadius.circular(20),
                 child: Icon(
                   Icons.image,
-                  color: Colors.purple[100],
+                  color: Colors.indigo[100],
                   size: 50,
                 ),
               ),
@@ -58,6 +58,7 @@ var programe;
   // Secreen Logic
   void fetchProgrameData() async {
     int userId=1;
+      _isLoading = true;
     final data = await ApiHelper().getProgram(userId);
     setState(() {
       programe = data;

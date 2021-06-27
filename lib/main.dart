@@ -6,6 +6,7 @@ import 'package:flu/ui/pages/marks.dart';
 import 'package:flu/ui/pages/payments.dart';
 import 'package:flu/ui/pages/profile.dart';
 import 'package:flu/ui/pages/programs.dart';
+import 'package:flu/ui/pages/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flu/ui/pages/logIn.dart';
 import 'package:flu/ui/pages/home.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'MY SCHOOL',
       routes: {
         '/login': (context) => LogIn(),
+        '/resetPass': (context) => ResetPassword(),
         '/forgot_password': (context) => ForgotPassword(),
         '/profile': (context) => Profile(),
         '/home': (context) => Home(),
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         '/attendance': (context) => Attendance(),
         '/activities': (context) => Activities(),
       },
-      home: LogIn(),
+      home: ResetPassword(),
     );
   }
 }
